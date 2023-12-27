@@ -12,13 +12,13 @@ namespace MicroservicesWithCQRSDesignPattern.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ICommandHandler<CreateProductCommand> _createProductCommandHandler;
-        private readonly IQueryHandler<GetProductsQuery, IEnumerable<ProductViewModel>> _getProductsQueryHandler;
+        private readonly IQueryHandler<GetProductsQuery, IEnumerable<GetAllProductCommand>> _getProductsQueryHandler;
         private readonly ICommandHandler<UpdateProductCommand> _updateProductCommandHandler;
         private readonly ICommandHandler<DeleteProductCommand> _deleteProductCommandHandler;
 
         public ProductController(
             ICommandHandler<CreateProductCommand> createProductCommandHandler,
-            IQueryHandler<GetProductsQuery, IEnumerable<ProductViewModel>> getProductsQueryHandler,
+            IQueryHandler<GetProductsQuery, IEnumerable<GetAllProductCommand>> getProductsQueryHandler,
             ICommandHandler<UpdateProductCommand> updateProductCommandHandler)
         {
             _createProductCommandHandler = createProductCommandHandler;
