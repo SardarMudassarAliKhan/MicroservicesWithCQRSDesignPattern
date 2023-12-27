@@ -1,6 +1,4 @@
-﻿using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-
-namespace MicroservicesWithCQRSDesignPattern.Interfaces
+﻿namespace MicroservicesWithCQRSDesignPattern.Interfaces
 {
     public interface IQueryHandler<TQuery, TResult>
     {
