@@ -19,7 +19,6 @@ namespace MicroservicesWithCQRSDesignPattern.Handlers
             {
                 Name = command.Name,
                 Price = command.Price
-                // Set other properties
             };
 
             await _repository.AddAsync(product);

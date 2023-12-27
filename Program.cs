@@ -6,7 +6,6 @@ using MicroservicesWithCQRSDesignPattern.Quries.CommandModel;
 using MicroservicesWithCQRSDesignPattern.Quries.QueryModel;
 using MicroservicesWithCQRSDesignPattern.Repository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
 builder.Services.AddTransient<ICommandHandler<CreateProductCommand>, CreateProductCommandHandler>();
-builder.Services.AddTransient<IQueryHandler<GetProductsQuery, IEnumerable<ProductViewModel>>, GetProductsQueryHandler>();
+builder.Services.AddTransient<IQueryHandler<GetProductsQuery, IEnumerable<GetAllProductCommand>>, GetProductsQueryHandler>();
 builder.Services.AddTransient<ICommandHandler<UpdateProductCommand>, UpdateProductCommandHandler>();
 builder.Services.AddTransient<ICommandHandler<DeleteProductCommand>, DeleteProductCommandHandler>();
 
