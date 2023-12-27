@@ -1,9 +1,27 @@
+using MicroservicesWithCQRSDesignPattern.AppDbContext;
+using MicroservicesWithCQRSDesignPattern.Handlers;
+using MicroservicesWithCQRSDesignPattern.Interfaces;
+using MicroservicesWithCQRSDesignPattern.Model;
+using MicroservicesWithCQRSDesignPattern.Quries.CommandModel;
+using MicroservicesWithCQRSDesignPattern.Quries.QueryModel;
+using MicroservicesWithCQRSDesignPattern.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var configuration = builder.Configuration;
+
 // Add services to the container.
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")); // Replace with your database provider and connection string
+});
+builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
+builder.Services.AddTransient<ICommandHandler<CreateProductCommand>, CreateProductCommandHandler>();
+builder.Services.AddTransient<IQueryHandler<GetProductsQuery, IEnumerable<ProductViewModel>>, GetProductsQueryHandler>();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
