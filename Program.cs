@@ -20,6 +20,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
 builder.Services.AddTransient<ICommandHandler<CreateProductCommand>, CreateProductCommandHandler>();
 builder.Services.AddTransient<IQueryHandler<GetProductsQuery, IEnumerable<ProductViewModel>>, GetProductsQueryHandler>();
+builder.Services.AddTransient<ICommandHandler<UpdateProductCommand>, UpdateProductCommandHandler>();
+builder.Services.AddTransient<ICommandHandler<DeleteProductCommand>, DeleteProductCommandHandler>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
