@@ -7,7 +7,7 @@ namespace MicroservicesWithCQRSDesignPattern.Repository
 {
     public class ProductRepository : IRepository<Product>
     {
-        private readonly ApplicationDbContext _dbContext; // Replace with your actual database context
+        private readonly ApplicationDbContext _dbContext;
 
         public ProductRepository(ApplicationDbContext dbContext)
         {
